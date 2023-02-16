@@ -26,11 +26,18 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 
-
+#new section to display fruityvice api response
 streamlit.header("Fruityvice Fruit Advice!")
-fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ "kiwi")
-# streamlit.text(fruityvice_response.json())
+#fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ "kiwi")
+#streamlit.text(fruityvice_response.json())
 
+
+#let the user choose the fruit to get advice
+fruit_choice = streamlit.text_input('what fruit would you like information about?', 'kiwi')
+streamlit.write('the user entered',fruit_choice) 
+fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
+                                    
+                                    
 # normalize the json version  
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # ouput the result like a table
