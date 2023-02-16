@@ -32,6 +32,6 @@ fruityvice_response =rq.get("https://fruityvice.com/api/fruit/watermelon")
 # streamlit.text(fruityvice_response.json())
 
 # normalize the json version  
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # ouput the result like a table
 streamlit.dataframe(fruityvice_normalized)
