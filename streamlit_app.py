@@ -33,19 +33,20 @@ streamlit.header("Fruityvice Fruit Advice!")
 #fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ "kiwi")
 #streamlit.text(fruityvice_response.json())
 
-
+try:
 #let the user choose the fruit to get advice
-fruit_choice = streamlit.text_input('what fruit would you like information about?', 'kiwi')
-streamlit.write('the user entered',fruit_choice) 
-fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
-                                    
-                                    
-# normalize the json version  
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-# ouput the result like a table
-streamlit.dataframe(fruityvice_normalized)
+   fruit_choice = streamlit.text_input('what fruit would you like information about?')
+   if not fruit_choice:
+      streamlit.error("Please select a fruit to get information.")
+   else:
+      fruityvice_response =rq.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
+      # normalize the json version  
+      fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+      # ouput the result like a table
+      streamlit.dataframe(fruityvice_normalized)
 
-
+expect URLError as e:
+  streamlit.error()
 
 streamlit.stop()
 
