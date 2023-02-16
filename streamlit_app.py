@@ -60,6 +60,7 @@ my_cur = my_cnx.cursor()
 
 #get some data
 my_cur.execute("SELECT * from fruit_load_list")
-my_data_row = my_cur.fetchone()
+#my_data_row = my_cur.fetchone()
+my_data_row = my_cur.fetchall()
 streamlit.header("the fruit load list contains:")
 streamlit.dataframe(my_data_row)
